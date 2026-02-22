@@ -1,0 +1,16 @@
+services:
+  benchmark:
+    build: .
+    image: cuda-benchmark
+    container_name: cuda-benchmark
+    
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    
+    volumes:
+      - ./results:/results
